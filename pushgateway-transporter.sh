@@ -5,4 +5,4 @@ PASSWORD=prometheus
 JOB_NAME=some_job
 INSTANCE_NAME=$(hostname)
 
-python "print_top_usage_process.py" | curl -k -u "$USER:$PASSWORD" --data-binary @- "$PUSHGATEWAY_URL/metrics/job/$JOB_NAME/instance/$INSTANCE_NAME"
+python "print_top_usage_process.py" --pid $@ | curl -k -u "$USER:$PASSWORD" --data-binary @- "$PUSHGATEWAY_URL/metrics/job/$JOB_NAME/instance/$INSTANCE_NAME"
